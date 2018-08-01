@@ -128,13 +128,13 @@ def main():
 
     @bot.on('notice')
     def handle_connection_notice(message, user, target, text):
-        if 'connecting' not in text:
+        if 'connecting' not in text or 'tor-users' in text:
             return
 
         match = IP_REGEX.search(text)
         if match:
             ip = match.group(1)
-            
+
             if ip in ('0', '255.255.255.255', '127.0.0.1', '::1'):
                 return
 
